@@ -20,8 +20,8 @@ compatibility_date = "2024-08-21"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#workers-ai
-# [ai]
-# binding = "AI"
+[ai]
+binding = "AI"
 
 # Bind an Analytics Engine dataset. Use Analytics Engine to write analytics within your Pages Function.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#analytics-engine-datasets
@@ -80,18 +80,31 @@ compatibility_date = "2024-08-21"
 # Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.producers]]
-binding = "MY_QUEUE"
-queue = "my-queue"
+binding = "GATHERER_QUEUE"
+queue = "vg-gatherer"
+
+[[queues.producers]]
+binding = "INDEXER_QUEUE"
+queue = "vg-indexer"
 
 # Bind a Queue consumer. Queue Consumers can retrieve tasks scheduled by Producers to act on them.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.consumers]]
-queue = "my-queue"
+queue = "vg-gatherer"
 # Optional: Configure batching and retries: https://developers.cloudflare.com/queues/learning/batching-retries/
-# max_batch_size = 10
+max_batch_size = 1
 # max_batch_timeout = 30
 # max_retries = 10
 # dead_letter_queue = "my-queue-dlq"
+
+[[queues.consumers]]
+queue = "vg-indexer"
+# Optional: Configure batching and retries: https://developers.cloudflare.com/queues/learning/batching-retries/
+max_batch_size = 20
+# max_batch_timeout = 30
+# max_retries = 10
+# dead_letter_queue = "my-queue-dlq"
+
 
 # Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#r2-buckets
@@ -107,6 +120,6 @@ queue = "my-queue"
 
 # Bind a Vectorize index. Use to store and query vector embeddings for semantic search, classification and other vector search use-cases.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#vectorize-indexes
-# [[vectorize]]
-# binding = "MY_INDEX"
-# index_name = "my-index"
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "video-game-summaries"

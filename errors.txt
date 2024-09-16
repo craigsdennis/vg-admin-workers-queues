@@ -1,0 +1,5 @@
+Error: VECTOR_UPSERT_ERROR (code = 40016): oversized metadata for vector id="370:storyline"; the compact JSON representation of the metadata must not exceed 10240 bytes, got 10520 bytes
+
+✘ [ERROR]   Error: 3001: Unknown internal error
+
+✘ [ERROR]   Error: Too many API requests by single worker invocation.

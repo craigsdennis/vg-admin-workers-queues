@@ -10,7 +10,13 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240821.1",
+    "@types/common-tags": "^1.8.4",
     "typescript": "^5.5.2",
     "wrangler": "^3.60.3"
+  },
+  "dependencies": {
+    "common-tags": "^1.8.2",
+    "hono": "^4.5.9",
+    "igdb-api-node": "^5.0.2"
   }
 }
